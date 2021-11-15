@@ -19,10 +19,10 @@ public class StudentRest {
     @Path("")
     @POST
     public Response createStudent(Student student){
-        if(student.getFirstName()==null || student.getLastName()==null ||
-                student.getEmail()==null)
-            throw new WebApplicationException(Response.status(Response.Status.NO_CONTENT)
-                    .entity("Some data is missing").type(MediaType.TEXT_PLAIN_TYPE).build());
+        if(student.getFirstName().equals("") || student.getLastName().equals("") ||
+                student.getEmail().equals(""))
+            throw new WebApplicationException(Response.status(Response.Status.NOT_ACCEPTABLE).
+                   entity("Some data is missing").type(MediaType.TEXT_PLAIN_TYPE).build());
 
 
             studentService.createStudent(student);
