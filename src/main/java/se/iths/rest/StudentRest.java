@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Path("students")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -22,13 +23,56 @@ public class StudentRest {
         if(student.getFirstName().equals("") || student.getLastName().equals("") ||
                 student.getEmail().equals(""))
             throw new WebApplicationException(Response.status(Response.Status.NOT_ACCEPTABLE).
-                   entity("Some data is missing").type(MediaType.TEXT_PLAIN_TYPE).build());
+                   entity("Some data is missing").type(MediaType.APPLICATION_JSON_TYPE).build());
 
 
             studentService.createStudent(student);
 
         return Response.ok(student).build();
     }
+
+    @Path("")
+    @GET
+    public Response getAllStudents() {
+
+        List<Student> foundStudents = studentService.getAllStudents();
+        if(foundStudents.isEmpty()){
+            throw new WebApplicationException(Response.status(Response.Status.NOT_FOUND)
+                    .entity("No students found in database.").type(MediaType.APPLICATION_JSON_TYPE).build());
+        }
+
+        return Response.ok(foundStudents).build();
+    }
+
+    @Path("{id}")
+    @GET
+    public Response getStudent(@PathParam("id") Long id) {
+        Student foundStudent= studentService.findStudentById(id);
+        if (foundStudent == null) {
+            throw new WebApplicationException(Response.status(Response.Status.NOT_FOUND)
+                    .entity("Student with ID " + id + " was not found in database.").type(MediaType.APPLICATION_JSON_TYPE).build());
+        }
+        return Response.ok(foundStudent).build();
+
+    }
+
+
+    @Path("{id}")
+    @DELETE
+    public Response deleteStudent(@PathParam("id") Long id) {
+        Student foundStudent= studentService.findStudentById(id);
+        if (foundStudent == null) {
+            throw new WebApplicationException(Response.status(Response.Status.NOT_FOUND)
+                    .entity("Student with ID " + id + " was not found in database.").type(MediaType.APPLICATION_JSON_TYPE).build());
+        }
+        studentService.deleteStudent(id);
+
+        return Response.ok("Student with ID "+ id+ " has been deleted from database").build();
+
+    }
+
+
+
 
 
 
