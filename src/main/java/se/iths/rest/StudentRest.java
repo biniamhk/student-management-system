@@ -71,6 +71,39 @@ public class StudentRest {
 
     }
 
+    @Path("{id}")
+    @PUT
+    public  Response updateStudent(Student student, @PathParam("id") Long id){
+        Student foundStudent=studentService.findStudentById(id);
+        if(foundStudent==null){
+            throw new WebApplicationException(Response.status(Response.Status.NOT_FOUND)
+                    .entity("Student with Id "+id+" not found").type(MediaType.APPLICATION_JSON_TYPE).build());
+        }
+        else if(student.getFirstName().equals("") || student.getLastName().equals("") ||
+                student.getEmail().equals(""))
+            throw new WebApplicationException(Response.status(Response.Status.NOT_FOUND).
+                    entity("unable to update, some data is missing").type(MediaType.APPLICATION_JSON_TYPE).build());
+
+        studentService.update(student,id);
+        return  Response.ok(student).build();
+    }
+
+    @Path("getbylastname")
+    @GET
+    public Response getStudentByLastName(@QueryParam("lastName") String lastName){
+        List<Student> foundStudent= studentService.findStudentByLastName(lastName);
+        if (foundStudent == null) {
+            throw new WebApplicationException(Response.status(Response.Status.NOT_FOUND)
+                    .entity("Student with last name " + lastName + " was not found in database.").type(MediaType.APPLICATION_JSON_TYPE).build());
+        }
+        return Response.ok(foundStudent).build();
+
+
+
+    }
+
+
+
 
 
 
