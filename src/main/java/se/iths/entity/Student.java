@@ -13,11 +13,12 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NotEmpty
+    //@NotEmpty
     private String firstName;
-    @NotEmpty
+
+    //@NotEmpty
     private String lastName;
-    @NotEmpty
+    //@NotEmpty
     private String email;
 
     private String phoneNumber;

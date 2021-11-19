@@ -34,8 +34,8 @@ public class StudentService {
     }
 
 
-    public void update(Student student ,Long id) {
-        Student foundStudent=entityManager.find(Student.class,id);
+    public void update(Student student, Long id) {
+        Student foundStudent = entityManager.find(Student.class, id);
         foundStudent.setFirstName(student.getFirstName());
         foundStudent.setLastName(student.getLastName());
         foundStudent.setEmail(student.getEmail());
@@ -45,7 +45,9 @@ public class StudentService {
 
     public List<Student> findStudentByLastName(String lastName) {
         return entityManager.createQuery("SELECT s from Student s where s.lastName=:lastName", Student.class)
-                .setParameter("lastName",lastName).getResultList();
+                .setParameter("lastName", lastName).getResultList();
     }
+
+
 }
 
