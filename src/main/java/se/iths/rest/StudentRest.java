@@ -98,16 +98,5 @@ public class StudentRest {
         }
         return Response.ok(foundStudent).build();
 
-
-
     }
-
-
-
-
-
-
-
-
-
 }
