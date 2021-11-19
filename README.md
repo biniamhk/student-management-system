@@ -2,11 +2,13 @@
 #Lab1
 
  1. POST :  localhost:8080/student-management-system/api/v1/students
-            {   "firstName" : "John",
+           
+	   {         "firstName" : "John",
 	              "lastName" : "kalle",
 	              "email" : "test@test.com",
-               	  "phoneNumber" : "" 
-	           }
+	              "phoneNumber" : "0790234525"
+	            }
+
 
 2. GET : localhost:8080/student-management-system/api/v1/students
 
@@ -16,7 +18,7 @@
 
 5.PUT : localhost:8080/student-management-system/api/v1/students/{id}
          
-             {  "firstName" : "John",
+             {        "firstName" : "John",
 	              "lastName" : "kalle",
 	              "email" : "test@test.com",
 	              "phoneNumber" : "0790234525"
