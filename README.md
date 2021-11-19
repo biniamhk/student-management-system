@@ -1,9 +1,17 @@
 # student-management-system
 #Lab1
+Java20/komplex javaprogrammering
+
+ Deltagare :
+ 
+. Samir Alsalhani
+
+. Biniam Haile
 
  1. POST :  localhost:8080/student-management-system/api/v1/students
+ 
            
-	   {         "firstName" : "John",
+	     {        "firstName" : "John",
 	              "lastName" : "kalle",
 	              "email" : "test@test.com",
 	              "phoneNumber" : "0790234525"
@@ -16,7 +24,7 @@
             
 4. DELETE : localhost:8080/student-management-system/api/v1/students/{id}
 
-5.PUT : localhost:8080/student-management-system/api/v1/students/{id}
+5. PUT : localhost:8080/student-management-system/api/v1/students/{id}
          
              {        "firstName" : "John",
 	              "lastName" : "kalle",
