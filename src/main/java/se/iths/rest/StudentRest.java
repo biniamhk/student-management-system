@@ -1,6 +1,7 @@
 package se.iths.rest;
 
 import se.iths.entity.Student;
+import se.iths.exception.IncompleteDataException;
 import se.iths.service.StudentService;
 
 import javax.inject.Inject;
@@ -20,10 +21,9 @@ public class StudentRest {
     @Path("")
     @POST
     public Response createStudent(Student student) {
-        if (student.getFirstName() == null || student.getFirstName().equals("") || student.getLastName()== null||student.getLastName().equals("") ||
-               student.getEmail()==null|| student.getEmail().equals(""))
-            throw new WebApplicationException(Response.status(Response.Status.BAD_REQUEST).
-                    entity("Some data is missing").type(MediaType.APPLICATION_JSON_TYPE).build());
+        if (student.getFirstName() == null || student.getFirstName().equals("") || student.getLastName() == null || student.getLastName().equals("") ||
+                student.getEmail() == null || student.getEmail().equals(""))
+            throw new IncompleteDataException("Some data is missing");
 
         studentService.createStudent(student);
         return Response.ok(student).build();
@@ -76,8 +76,8 @@ public class StudentRest {
         if (foundStudent == null) {
             throw new WebApplicationException(Response.status(Response.Status.NOT_FOUND)
                     .entity("Student with Id " + id + " not found").type(MediaType.APPLICATION_JSON_TYPE).build());
-        } else if (student.getFirstName() == null || student.getFirstName().equals("") || student.getLastName()== null||student.getLastName().equals("") ||
-                student.getEmail()==null|| student.getEmail().equals(""))
+        } else if (student.getFirstName() == null || student.getFirstName().equals("") || student.getLastName() == null || student.getLastName().equals("") ||
+                student.getEmail() == null || student.getEmail().equals(""))
             throw new WebApplicationException(Response.status(Response.Status.NOT_FOUND).
                     entity("unable to update, some data is missing").type(MediaType.APPLICATION_JSON_TYPE).build());
 
