@@ -1,11 +1,11 @@
 package se.iths.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.json.bind.annotation.JsonbTransient;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Student {
@@ -21,6 +21,9 @@ public class Student {
     private String email;
 
     private String phoneNumber;
+    @JsonbTransient
+    @ManyToMany(mappedBy = "enrolledStudents",cascade = CascadeType.ALL)
+    private List<Subject> subjects = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -60,5 +63,9 @@ public class Student {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public List<Subject> getSubjects() {
+        return subjects;
     }
 }
