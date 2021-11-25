@@ -21,11 +21,22 @@ public class SubjectService {
         entityManager.merge(subject);
         return subject;
     }
+
+    public Subject addTeacherToSubject(Subject subject) {
+        entityManager.merge(subject);
+        return subject;
+    }
+
     public List<Subject> getAllSubjects() {
 
         return entityManager.createQuery("SELECT s from Subject  s", Subject.class).getResultList();
     }
+
     public Subject findSubjectById(Long id) {
         return entityManager.find(Subject.class, id);
     }
+
+
+
+
 }

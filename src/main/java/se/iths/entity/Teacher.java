@@ -1,9 +1,9 @@
 package se.iths.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.json.bind.annotation.JsonbTransient;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Teacher {
@@ -13,6 +13,11 @@ public class Teacher {
     private String firstName;
     private String lastName;
     private String email;
+
+    @JsonbTransient
+    @OneToMany(mappedBy = "teacher")
+    private Set<Subject> subjects = new HashSet<>();
+
 
     public Long getId() {
         return id;
@@ -44,5 +49,13 @@ public class Teacher {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Set<Subject> getSubjects() {
+        return this.subjects;
+    }
+
+    public void setSubjects(Set<Subject> subjects) {
+        this.subjects = subjects;
     }
 }

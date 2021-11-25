@@ -2,6 +2,7 @@ package se.iths.service;
 
 
 import se.iths.entity.Student;
+import se.iths.entity.Subject;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -47,6 +48,7 @@ public class StudentService {
         return entityManager.createQuery("SELECT s from Student s where s.lastName=:lastName", Student.class)
                 .setParameter("lastName", lastName).getResultList();
     }
+
 
 
 }

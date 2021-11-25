@@ -22,4 +22,8 @@ public class TeacherService {
         return entityManager.createQuery("SELECT t from Teacher  t", Teacher.class).getResultList();
     }
 
+
+    public Teacher findTeacherById(Long teacherId) {
+        return  entityManager.find(Teacher.class,teacherId);
+    }
 }

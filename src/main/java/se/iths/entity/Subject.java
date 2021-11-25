@@ -12,7 +12,7 @@ public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
+    private String subject;
 
     @ManyToMany
     @JoinTable(name = "student_enrolled",
@@ -20,6 +20,9 @@ public class Subject {
             inverseJoinColumns = @JoinColumn(name = "student_id")
     )
     private Set<Student> enrolledStudents = new HashSet<>();
+
+    @ManyToOne
+    private Teacher teacher;
 
     public Long getId() {
         return id;
@@ -29,12 +32,12 @@ public class Subject {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getSubject() {
+        return subject;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
     public Set<Student> getEnrolledStudents() {
@@ -45,12 +48,16 @@ public class Subject {
         enrolledStudents.add(student);
     }
 
-    @Override
-    public String toString() {
-        return "Subject{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", enrolledStudents=" + enrolledStudents +
-                '}';
+    public void setEnrolledStudents(Set<Student> enrolledStudents) {
+        this.enrolledStudents = enrolledStudents;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 }
+
