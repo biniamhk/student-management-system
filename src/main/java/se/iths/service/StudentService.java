@@ -25,7 +25,7 @@ public class StudentService {
 
 
     public Student findStudentById(Long id) {
-        return entityManager.find(Student.class, id);
+        return entityManager.getReference(Student.class, id);
     }
 
     public void deleteStudent(Long id) {

@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Path("subjects")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -24,17 +25,22 @@ public class SubjectRest {
     @Path("")
     @POST
     public Response createSubject(Subject subject) {
-       subjectService.createSubject(subject);
+        subjectService.createSubject(subject);
         return Response.ok(subject).build();
     }
 
-    @Path("subjectId/{subjectId}/studentId/{studId}")
+    @Path("/{subjectId}/students/{studId}")
     @PUT
-   public Subject enrollSubjectToSubject(@PathParam("subjectId") Long subjectId,@PathParam("studId") Long studId){
-        Subject subject=subjectService.findSubjectById(subjectId);
-        Student student=studentService.findStudentById(studId);
-        subject.enrollStudent(student);
-      return   subjectService.createSubject(subject);
+    public Response enrollSubjectToSubject(@PathParam("subjectId") Long subjectId, @PathParam("studId") Long studId) {
+        Subject subject = subjectService.findSubjectById(subjectId);
+        Student student = studentService.findStudentById(studId);
+        if (student != null && subject != null)
+            subject.enrollStudent(student);
+        else
+            throw new IncompleteDataException("Some data is missing");
+
+        Subject subjects = subjectService.enrollStudentToSubject(subject);
+        return Response.ok(subjects).build();
 
     }
 }

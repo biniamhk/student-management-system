@@ -1,5 +1,6 @@
 package se.iths.service;
 
+import se.iths.entity.Student;
 import se.iths.entity.Subject;
 
 import javax.persistence.EntityManager;
@@ -14,6 +15,10 @@ public class SubjectService {
 
     public Subject createSubject(Subject subject) {
         entityManager.persist(subject);
+        return subject;
+    }
+    public Subject enrollStudentToSubject(Subject subject) {
+        entityManager.merge(subject);
         return subject;
     }
     public List<Subject> getAllSubjects() {

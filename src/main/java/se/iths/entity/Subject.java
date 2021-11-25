@@ -2,7 +2,9 @@ package se.iths.entity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Subject {
@@ -14,10 +16,10 @@ public class Subject {
 
     @ManyToMany
     @JoinTable(name = "student_enrolled",
-            joinColumns = @JoinColumn(name="subject_id"),
+            joinColumns = @JoinColumn(name = "subject_id"),
             inverseJoinColumns = @JoinColumn(name = "student_id")
     )
-    private List<Student> enrolledStudents=new ArrayList<>();
+    private Set<Student> enrolledStudents = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -35,11 +37,20 @@ public class Subject {
         this.name = name;
     }
 
-    public List<Student> getEnrolledStudents() {
+    public Set<Student> getEnrolledStudents() {
         return enrolledStudents;
     }
 
     public void enrollStudent(Student student) {
         enrolledStudents.add(student);
+    }
+
+    @Override
+    public String toString() {
+        return "Subject{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", enrolledStudents=" + enrolledStudents +
+                '}';
     }
 }
