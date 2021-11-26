@@ -10,19 +10,30 @@ Deltagare :
 Endpoints for Subject-Entity
 1. POST :  localhost:8080/student-management-system/api/v1/subjects
 {"subject":"Java"}
+
 2. GET : localhost:8080/student-management-system/api/v1/subjects/{id}
+
 3. Enrolling a student to a subject:
      PUT: localhost:8080/student-management-system/api/v1/subjects/subjectId/{subjectId}/studentId/{studId}
+
 4.Adding a teacher to a subject:
-     PUT: localhost:8080/student-management-system/api/v1/subjects/subjectId/{subjectId}/teacherId/{teacherId}
+    PUT: localhost:8080/student-management-system/api/v1/subjects/subjectId/{subjectId}/teacherId/{teacherId}
+
 5.Getting complete information about a subject(students enrolled and assigned teacher):
+     
      GET : localhost:8080/student-management-system/api/v1/subjects/getbysubject
+
 QueryParam:          name:subject     value:Java
 
 Endpoints for Teacher-Entity
+
 1.POST:localhost:8080/student-management-system/api/v1/teachers
-{"firstName":"FirstName","lastName":"LastName","email":"test@test.se"}
+
+{   "firstName":"FirstName",
+    "lastName":"LastName",
+    "email":"test@test.se"  }
 2.GET localhost:8080/student-management-system/api/v1/teachers/{id}
+
 3.GET localhost:8080/student-management-system/api/v1/teachers
 
 
