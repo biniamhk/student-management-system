@@ -28,13 +28,15 @@ Endpoints for Subject-Entity
      
      GET : localhost:8080/student-management-system/api/v1/subjects/getbysubject
 
-QueryParam:          name:subject     value:Java
+QueryParam:          name:subject             value:Java
 
 Endpoints for Teacher-Entity
 
 1.POST:localhost:8080/student-management-system/api/v1/teachers
 
-{   "firstName":"FirstName",
+{   
+
+    "firstName":"FirstName",
 
     "lastName":"LastName",
     
