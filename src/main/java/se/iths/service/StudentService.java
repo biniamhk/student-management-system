@@ -2,6 +2,7 @@ package se.iths.service;
 
 
 import se.iths.entity.Student;
+import se.iths.entity.Subject;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,6 +15,7 @@ public class StudentService {
     EntityManager entityManager;
 
     public void createStudent(Student student) {
+        //student.addSubject(new Subject("Java"));
         entityManager.persist(student);
     }
 

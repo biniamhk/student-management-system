@@ -2,9 +2,7 @@ package se.iths.entity;
 
 import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Entity
 public class Subject {
@@ -15,22 +13,24 @@ public class Subject {
 
     private String name;
 
-    @ManyToMany
-    @JoinTable(
-            name = "student_subject",
-            joinColumns = @JoinColumn(name = "subject_id"),
-            inverseJoinColumns = @JoinColumn(name = "student_id")
+    @ManyToMany(mappedBy = "subject", cascade = CascadeType.ALL)
+    private Set<Student> students = new HashSet<>();
 
-    )
-    private List<Student> students = new ArrayList<>();
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "teacher_id", referencedColumnName = "id")
+    @ManyToOne
     private Teacher teacher;
 
 
     public void addStudents(Student student) {
         students.add(student);
+        student.getSubject().add(this);
+
+    }
+
+    public void addTeacher(Teacher teacher1) {
+        setTeacher(teacher1);
+        //this.teacher= teacher1;
+        teacher1.getSubjects().add(this);
     }
 
     public Subject(String name) {
@@ -58,12 +58,12 @@ public class Subject {
     }
 
 
-    public List<Student> getStudents() {
+    public Set<Student> getStudents() {
         return students;
     }
 
 
-    public void setStudents(List<Student> students) {
+    public void setStudents(Set<Student> students) {
         this.students = students;
     }
 
