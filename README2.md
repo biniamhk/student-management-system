@@ -4,6 +4,7 @@ Java20/komplex javaprogrammering
 
 Deltagare :
 .Samir Alsalhani
+
 .Biniam Haile
 
 
@@ -13,9 +14,9 @@ Endpoints for Subject-Entity
  
      {"subject":"Java"}
 
-2. GET : localhost:8080/student-management-system/api/v1/subjects/{id}
+2.GET : localhost:8080/student-management-system/api/v1/subjects/{id}
 
-3. Enrolling a student to a subject:
+3.Enrolling a student to a subject:
      
      PUT: localhost:8080/student-management-system/api/v1/subjects/subjectId/{subjectId}/studentId/{studId}
 
@@ -34,10 +35,13 @@ Endpoints for Teacher-Entity
 1.POST:localhost:8080/student-management-system/api/v1/teachers
 
 {   "firstName":"FirstName",
+
     "lastName":"LastName",
+    
     "email":"test@test.se"  }
 
 2. GET localhost:8080/student-management-system/api/v1/teachers/{id}
+
 
 3. GET localhost:8080/student-management-system/api/v1/teachers
 
