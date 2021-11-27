@@ -21,21 +21,22 @@ public class SampleDateGenerator {
     @PostConstruct
     public void generateData() {
 
-        Teacher teacher1 = new Teacher(null,"Mr.Smith", "smith@test.se");
-        Teacher teacher2 = new Teacher(null,"Ms.Brown", "brown@test.se");
+        Subject subject1 = new Subject("Java");
+        Subject subject2 = new Subject(".Net");
+        Subject subject3 = new Subject("Python");
+
 
         Student student1 = new Student("Sam", "Default", "sam@email.se");
         Student student2 = new Student("Ben", "Benny", "benny@email.se");
         Student student3 = new Student("Gil", "Gilly", "gilly@email.se");
 
-        Subject subject1 = new Subject("Java");
-        Subject subject2 = new Subject(".Net");
-        Subject subject3 = new Subject("Python");
+        Teacher teacher1 = new Teacher(null,"Mr.Smith", "smith@test.se");
+        Teacher teacher2 = new Teacher(null,"Ms.Brown", "brown@test.se");
 
         subject1.addStudents(student1);
         subject1.addStudents(student2);
         subject1.addStudents(student3);
-        subject1.addTeacher(teacher1);
+
 
         subject2.addStudents(student1);
         subject2.addStudents(student2);
@@ -44,13 +45,18 @@ public class SampleDateGenerator {
         subject3.addStudents(student1);
         subject3.addStudents(student2);
 
+        entityManager.persist(subject1);
+        entityManager.persist(subject2);
+        entityManager.persist(subject3);
+
+
         subject1.addTeacher(teacher1);
         subject2.addTeacher(teacher2);
         subject3.addTeacher(teacher1);
 
-        entityManager.persist(subject1);
-        entityManager.persist(subject2);
-        entityManager.persist(subject3);
+        entityManager.merge(subject1);
+        entityManager.merge(subject2);
+        entityManager.merge(subject3);
 
 
 

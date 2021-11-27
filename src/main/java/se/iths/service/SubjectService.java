@@ -19,7 +19,7 @@ public class SubjectService {
 
     public Subject createSubject(Subject subject) {
         entityManager.persist(subject);
-        subject.addStudents(new Student("samir", "default", "test@test.se"));
+         subject.addStudents(new Student("samir", "default", "test@test.se"));
          subject.addTeacher(new Teacher(1L,"Biniam", "biniam@test.se"));
         entityManager.merge(subject);
         return subject;
