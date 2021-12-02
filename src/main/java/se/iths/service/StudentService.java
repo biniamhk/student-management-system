@@ -41,7 +41,7 @@ public class StudentService {
         foundStudent.setLastName(student.getLastName());
         foundStudent.setEmail(student.getEmail());
         foundStudent.setPhoneNumber(student.getPhoneNumber());
-        entityManager.merge(foundStudent);
+        //entityManager.merge(foundStudent);
     }
 
     public List<Student> findStudentByLastName(String lastName) {

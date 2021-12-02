@@ -60,35 +60,71 @@ public class SubjectRest {
         return Response.ok(foundSubject).build();
     }
 
+//    @Path("subjectId/{subjectId}/studentId/{studId}")
+//    @PUT
+//    public Response enrollStudentToSubject(@PathParam("subjectId") Long subjectId, @PathParam("studId") Long studId) {
+//        Subject subject = subjectService.findSubjectById(subjectId);
+//        Student student = studentService.findStudentById(studId);
+//        if (student != null && subject != null){
+//            //subject.enrollStudent(student);
+//            subject.addStudent(student);
+//
+//    }
+//        else
+//            throw new DataNotFoundException("Subject or Student was not found in data base");
+//
+//        Subject subjects = subjectService.enrollStudentToSubject(subject);
+//        return Response.ok(subjects).build();
+//
+//    }
+
     @Path("subjectId/{subjectId}/studentId/{studId}")
-    @PUT
-    public Response enrollStudentToSubject(@PathParam("subjectId") Long subjectId, @PathParam("studId") Long studId) {
+    @POST
+    public Response enrollStudentToSubject1(@PathParam("subjectId") Long subjectId, @PathParam("studId") Long studId) {
         Subject subject = subjectService.findSubjectById(subjectId);
         Student student = studentService.findStudentById(studId);
         if (student != null && subject != null)
-            subject.enrollStudent(student);
+            subject.addStudent(student);
         else
             throw new DataNotFoundException("Subject or Student was not found in data base");
 
-        Subject subjects = subjectService.enrollStudentToSubject(subject);
-        return Response.ok(subjects).build();
+        Subject subjects = subjectService.enrollStudentToSubject1(subject,student);
+        return Response.ok(subject).build();
 
     }
 
+
+//    @Path("subjectId/{subjectId}/teacherId/{teacherId}")
+//    @PUT
+//    public Response addTeacherToSubject(@PathParam("subjectId") Long subjectId, @PathParam("teacherId") Long teacherId) {
+//        Subject subject = subjectService.findSubjectById(subjectId);
+//        Teacher teacher = teacherService.findTeacherById(teacherId);
+//        if (subject != null && teacher != null)
+//           // subject.setTeacher(teacher);
+//            subject.addTeacher(teacher);
+//        else
+//            throw new DataNotFoundException("data was not found in database");
+//
+//        Subject subjects = subjectService.addTeacherToSubject(subject);
+//        return Response.ok(subjects).build();
+//
+//    }
+
     @Path("subjectId/{subjectId}/teacherId/{teacherId}")
-    @PUT
-    public Response addTeacherToSubject(@PathParam("subjectId") Long subjectId, @PathParam("teacherId") Long teacherId) {
+    @POST
+    public Response addTeacherToSubject1(@PathParam("subjectId") Long subjectId, @PathParam("teacherId") Long teacherId) {
         Subject subject = subjectService.findSubjectById(subjectId);
         Teacher teacher = teacherService.findTeacherById(teacherId);
         if (subject != null && teacher != null)
-            subject.setTeacher(teacher);
+            subject.addTeacher(teacher);
         else
             throw new DataNotFoundException("data was not found in database");
 
-        Subject subjects = subjectService.addTeacherToSubject(subject);
-        return Response.ok(subjects).build();
+        Subject subjects = subjectService.addTeacherToSubject1(subject,teacher);
+        return Response.ok(subject).build();
 
     }
+
     @Path("getbysubject")
     @GET
     public Response getSubjectByName(@QueryParam("subject") String subject) {

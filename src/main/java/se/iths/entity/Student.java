@@ -24,7 +24,7 @@ public class Student {
 
     private String phoneNumber;
 
-    @JsonbTransient
+
     @ManyToMany(mappedBy = "enrolledStudents", cascade = CascadeType.ALL)
     private Set<Subject> subjects = new HashSet<>();
 
@@ -67,6 +67,11 @@ public class Student {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public void setSubjects(Set<Subject> subjects) {
+        this.subjects = subjects;
+    }
+
 
     public Set<Subject> getSubjects() {
         return subjects;

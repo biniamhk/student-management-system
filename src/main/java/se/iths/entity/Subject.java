@@ -1,5 +1,6 @@
 package se.iths.entity;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -24,6 +25,17 @@ public class Subject {
     @ManyToOne
     private Teacher teacher;
 
+    public void addStudent(Student student) {
+        this.enrolledStudents.add(student);
+        student.getSubjects().add(this);
+    }
+
+    public void addTeacher(Teacher teacher) {
+        this.teacher = teacher;
+        teacher.getSubjects().add(this);
+    }
+
+
     public Long getId() {
         return id;
     }
@@ -32,6 +44,7 @@ public class Subject {
         this.id = id;
     }
 
+    @JsonbTransient
     public String getSubject() {
         return subject;
     }
@@ -39,6 +52,7 @@ public class Subject {
     public void setSubject(String subject) {
         this.subject = subject;
     }
+
 
     public Set<Student> getEnrolledStudents() {
         return enrolledStudents;
@@ -52,6 +66,7 @@ public class Subject {
         this.enrolledStudents = enrolledStudents;
     }
 
+    @JsonbTransient
     public Teacher getTeacher() {
         return teacher;
     }
@@ -59,5 +74,7 @@ public class Subject {
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
+
+
 }
 

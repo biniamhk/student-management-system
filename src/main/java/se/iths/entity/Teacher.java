@@ -14,7 +14,7 @@ public class Teacher {
     private String lastName;
     private String email;
 
-    @JsonbTransient
+
     @OneToMany(mappedBy = "teacher")
     private Set<Subject> subjects = new HashSet<>();
 
@@ -50,6 +50,7 @@ public class Teacher {
     public void setEmail(String email) {
         this.email = email;
     }
+
 
     public Set<Subject> getSubjects() {
         return this.subjects;
