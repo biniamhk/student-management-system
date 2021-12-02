@@ -18,11 +18,11 @@ Endpoints for Subject-Entity
 
 3.Enrolling a student to a subject:
      
-     PUT: localhost:8080/student-management-system/api/v1/subjects/subjectId/{subjectId}/studentId/{studId}
+     POST: localhost:8080/student-management-system/api/v1/subjects/subjectId/{subjectId}/studentId/{studId}
 
 4.Adding a teacher to a subject:
     
-    PUT: localhost:8080/student-management-system/api/v1/subjects/subjectId/{subjectId}/teacherId/{teacherId}
+    POST: localhost:8080/student-management-system/api/v1/subjects/subjectId/{subjectId}/teacherId/{teacherId}
 
 5.Getting complete information about a subject(students enrolled and assigned teacher):
      
