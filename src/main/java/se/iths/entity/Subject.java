@@ -44,7 +44,7 @@ public class Subject {
         this.id = id;
     }
 
-    @JsonbTransient
+
     public String getSubject() {
         return subject;
     }
@@ -53,7 +53,7 @@ public class Subject {
         this.subject = subject;
     }
 
-
+     @JsonbTransient
     public Set<Student> getEnrolledStudents() {
         return enrolledStudents;
     }
